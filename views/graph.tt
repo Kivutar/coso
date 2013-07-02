@@ -1,0 +1,61 @@
+<h1>Graph</h1>
+
+<hr/>
+
+<script>
+	function init() {
+		var sigInst = sigma.init(document.getElementById('globalsigma')).drawingProperties({
+			defaultLabelColor: '#000',
+			defaultLabelSize: 24,
+			defaultLabelBGColor: '#fff',
+			defaultLabelHoverColor: '#000',
+			defaultEdgeType: 'curve',
+			labelThreshold: 30,
+			labelActiveShadow: false,
+			borderSize: 2,
+			nodeBorderColor: 'default',
+   			defaultNodeBorderColor: '#000',
+		}).graphProperties({
+			minNodeSize: 3,
+			maxNodeSize: 10,
+			minEdgeSize: 5,
+			maxEdgeSize: 5
+		});
+
+		[% FOREACH statement IN statements %]
+			try {
+				sigInst.addNode('[% statement.subject | replace( "'", "\\'" ) %]', {
+					x: Math.random(),
+					y: Math.random(),
+					label: '[% statement.subject_label | replace( "'", "\\'" ) %]',
+					color: '[% statement.subject_color %]',
+					cluster: '[% statement.subject_color %]',
+					size: [% statement.subject_size %]
+				});
+			}  catch(err) {}
+			try {
+				sigInst.addNode('[% statement.object | replace( "'", "\\'" ) %]', {
+					x: Math.random(),
+					y: Math.random(),
+					label: '[% statement.object_label | replace( "'", "\\'" ) %]',
+					color: '[% statement.object_color %]',
+					cluster: '[% statement.object_color %]',
+					size: [% statement.object_size %]
+				});
+			}  catch(err) {}
+			try {
+				sigInst.addEdge('[% statement.subject | replace( "'", "\\'" ) %][% statement.predicate | replace( "'", "\\'" ) %][% statement.object | replace( "'", "\\'" ) %]','[% statement.subject | replace( "'", "\\'" ) %]','[% statement.object | replace( "'", "\\'" ) %]');
+			}  catch(err) {}
+		[% END %]
+
+		sigInst.activateFishEye().startForceAtlas2();
+	}
+	 
+	if (document.addEventListener) {
+		document.addEventListener("DOMContentLoaded", init, false);
+	} else {
+		window.onload = init;
+	}
+</script>
+
+<div id="globalsigma"></div>

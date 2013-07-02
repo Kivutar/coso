@@ -1,0 +1,23 @@
+<hr/>
+
+<h2>Meaning</h2>
+
+<br/>
+
+<ol>
+[% FOREACH aspect IN aspects %]
+	<li><strong>[% aspect.text %]</strong> <em>in</em>
+	<table class="table table-noborder">
+		<tbody>
+		[% FOREACH combination IN aspect.combinations %]
+			<tr>
+				<td class="span1"><a href="/desc/[% combination.subject %]">[% combination.subject_label %]</a></td>
+				<td class="span2"><a href="/desc/[% combination.words %]">[% combination.words_label %]</a></td>
+				<td>[% combination.meaning %]</td>
+			</td>
+		[% END %]
+		</tbody>
+	</table>
+	</li>
+[% END %]
+</ol>

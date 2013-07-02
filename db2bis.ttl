@@ -1,0 +1,432 @@
+@prefix								rdf:				<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix								rdfs:				<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix								owl:				<http://www.w3.org/2002/07/owl#> .
+@prefix								co-so:				<http://co-so.org/> .
+@prefix								jap:				<http://co-so.org/jap/> .
+@prefix								tradi:				<http://co-so.org/tradi/> .
+@prefix								viet:				<http://co-so.org/viet/> .
+@prefix								chu-nom:			<http://co-so.org/viet/chu-nom/> .
+@prefix								chu-han:			<http://co-so.org/viet/chu-han/> .
+
+co-so:sinogram						rdf:type			owl:Class .
+co-so:sinogram						rdfs:label			"Sinogram" .
+
+co-so:chu-nom						rdf:type			owl:Class .
+co-so:chu-nom						rdfs:subClassOf		co-so:vietnamese-sinogram .
+co-so:chu-nom						rdfs:label			"Chữ Nôm" .
+
+co-so:chu-han						rdf:type			owl:Class .
+co-so:chu-han						rdfs:subClassOf		co-so:vietnamese-sinogram .
+co-so:chu-han						rdfs:label			"Chữ Hán" .
+
+co-so:traditional-sinogram			rdf:type			owl:Class .
+co-so:traditional-sinogram			rdfs:subClassOf		co-so:sinogram .
+co-so:traditional-sinogram			rdfs:label			"Traditional sinogram" .
+
+co-so:current-japanese-sinogram		rdf:type			owl:Class .
+co-so:current-japanese-sinogram		rdfs:subClassOf		co-so:sinogram .
+co-so:current-japanese-sinogram		rdfs:label			"Current japanese sinogram" .
+
+co-so:vietnamese-sinogram			rdf:type			owl:Class .
+co-so:vietnamese-sinogram			rdfs:subClassOf		co-so:sinogram .
+co-so:vietnamese-sinogram			rdfs:label			"Vietnamese sinogram" .
+
+co-so:sinogram-combination			rdf:type			owl:Class .
+co-so:sinogram-combination			rdfs:label			"Sinogram combination" .
+
+co-so:vietnamese-sinogram-combination	rdf:type			owl:Class .
+co-so:vietnamese-sinogram-combination	rdfs:subClassOf		co-so:sinogram-combination .
+co-so:vietnamese-sinogram-combination	rdfs:label			"Vietnamese sinogram combination" .
+
+co-so:vietnamese-word-combination		rdf:type			owl:Class .
+co-so:vietnamese-word-combination		rdfs:label			"Vietnamese word combination" .
+
+co-so:contains-sinogram					rdf:type			owl:ObjectProperty .
+co-so:contains-sinogram					rdfs:range			co-so:sinogram .
+co-so:contains-sinogram					rdfs:domain			co-so:sinogram-combination .
+co-so:contains-sinogram					rdfs:label			"contains sinogram" .
+
+co-so:corresponding-vietnamese-sinogram-combination		rdf:type			owl:ObjectProperty .
+co-so:corresponding-vietnamese-sinogram-combination		rdfs:range			co-so:sinogram-combination .
+co-so:corresponding-vietnamese-sinogram-combination		rdfs:domain			co-so:vietnamese-word-combination .
+
+co-so:has-combination-meaning					rdf:type			owl:ObjectProperty .
+co-so:has-combination-meaning					rdfs:range			rdfs:Literal .
+co-so:has-combination-meaning					rdfs:label			"has meaning" .
+co-so:has-combination-meaning					rdfs:domain			co-so:sinogram-combination .
+
+co-so:has-meaning-aspect					rdf:type		owl:ObjectProperty .
+co-so:has-meaning-aspect					rdfs:range		rdfs:Literal .
+co-so:has-meaning-aspect					rdfs:label		"has meaning aspect" .
+co-so:has-meaning-aspect					rdfs:domain		co-so:sinogram .
+
+co-so:contains-meaning-aspect				rdf:type		owl:ObjectProperty .
+co-so:contains-meaning-aspect				rdfs:range		rdfs:Literal .
+co-so:contains-meaning-aspect				rdfs:label		"contains meaning aspect" .
+co-so:contains-meaning-aspect				rdfs:domain		co-so:sinogram-combination .
+
+co-so:corresponding-traditional-sinogram	rdf:type		owl:ObjectProperty .
+co-so:corresponding-traditional-sinogram	rdfs:range		co-so:traditional-sinogram .
+co-so:corresponding-traditional-sinogram	rdfs:domain		co-so:sinogram .
+co-so:corresponding-traditional-sinogram	owl:inverseOf	co-so:corresponding-usual-sinogram.
+
+co-so:corresponding-usual-sinogram		rdf:type		owl:ObjectProperty .
+co-so:corresponding-usual-sinogram		rdfs:range		co-so:sinogram .
+co-so:corresponding-usual-sinogram		rdfs:domain		co-so:traditional-sinogram .
+co-so:corresponding-usual-sinogram		owl:inverseOf	co-so:corresponding-traditional-sinogram .
+
+
+
+
+
+
+
+
+chu-han:人	rdf:type	co-so:chu-han .
+
+viet:人		rdf:type	co-so:vietnamese-sinogram-combination .
+viet:人影	rdf:type	co-so:vietnamese-sinogram-combination .
+viet:人工	rdf:type	co-so:vietnamese-sinogram-combination .
+viet:人愛	rdf:type	co-so:vietnamese-sinogram-combination .
+viet:人本	rdf:type	co-so:vietnamese-sinogram-combination .
+viet:説人本	rdf:type	co-so:vietnamese-sinogram-combination .
+
+viet:人		co-so:contains-sinogram		chu-han:人 .
+viet:人影	co-so:contains-sinogram		chu-han:人 .
+viet:人影	co-so:contains-sinogram		chu-han:影 .
+viet:人工	co-so:contains-sinogram		chu-han:人 .
+viet:人工	co-so:contains-sinogram		chu-han:工 .
+viet:人愛	co-so:contains-sinogram		chu-han:人 .
+viet:人愛	co-so:contains-sinogram		chu-han:愛 .
+viet:人本	co-so:contains-sinogram		chu-han:人 .
+viet:人本	co-so:contains-sinogram		chu-han:本 .
+viet:説人本	co-so:contains-sinogram		chu-han:説 .
+viet:説人本	co-so:contains-sinogram		chu-han:人 .
+viet:説人本	co-so:contains-sinogram		chu-han:本 .
+
+viet:nhân				rdf:type	co-so:vietnamese-word-combination .
+viet:nhân-ảnh			rdf:type	co-so:vietnamese-word-combination .
+viet:nhân-công			rdf:type	co-so:vietnamese-word-combination .
+viet:nhân-ái			rdf:type	co-so:vietnamese-word-combination .
+viet:nhân-bản			rdf:type	co-so:vietnamese-word-combination .
+viet:thuyết-nhân-bản	rdf:type	co-so:vietnamese-word-combination .
+
+viet:nhân				co-so:corresponding-vietnamese-sinogram-combination		viet:人 .
+viet:nhân-ảnh			co-so:corresponding-vietnamese-sinogram-combination		viet:人影 .
+viet:nhân-công			co-so:corresponding-vietnamese-sinogram-combination		viet:人工 .
+viet:nhân-ái			co-so:corresponding-vietnamese-sinogram-combination		viet:人愛 .
+viet:nhân-bản			co-so:corresponding-vietnamese-sinogram-combination		viet:人本 .
+viet:thuyết-nhân-bản	co-so:corresponding-vietnamese-sinogram-combination		viet:説人本 .
+
+viet:nhân				rdfs:label		"nhân" .
+viet:nhân-ảnh			rdfs:label		"nhân ảnh" .
+viet:nhân-công			rdfs:label		"nhân công" .
+viet:nhân-ái			rdfs:label		"nhân ái" .
+viet:nhân-bản			rdfs:label		"nhân bản" .
+viet:thuyết-nhân-bản	rdfs:label		"thuyết nhân bản" .
+
+viet:人		co-so:has-combination-meaning	"Homme, etre humain, personne" .
+viet:人影	co-so:has-combination-meaning	"L'ombre de quelqu'un, la silhouette" .
+viet:人工	co-so:has-combination-meaning	"La main d'oeuvre" .
+viet:人愛	co-so:has-combination-meaning	"Humanitaire" .
+viet:人本	co-so:has-combination-meaning	"Humanisme" .
+viet:説人本	co-so:has-combination-meaning	"Anthropocentrisme" .
+
+chu-han:人	co-so:has-meaning-aspect		"Homme, etre humain, personne" .
+
+viet:人		co-so:contains-meaning-aspect	"Homme, etre humain, personne" .
+viet:人影	co-so:contains-meaning-aspect	"Homme, etre humain, personne" .
+viet:人工	co-so:contains-meaning-aspect	"Homme, etre humain, personne" .
+viet:人愛	co-so:contains-meaning-aspect	"Homme, etre humain, personne" .
+viet:人本	co-so:contains-meaning-aspect	"Homme, etre humain, personne" .
+viet:説人本	co-so:contains-meaning-aspect	"Homme, etre humain, personne" .
+
+chu-han:影	rdf:type	co-so:chu-han .
+chu-han:影	co-so:has-meaning-aspect		"Ombre portée, fantôme, silhouette" .
+
+viet:人影	co-so:contains-meaning-aspect	"Ombre portée, fantôme, silhouette" .
+
+chu-han:愛	rdf:type	co-so:chu-han .
+chu-han:愛	co-so:has-meaning-aspect		"Affection, amour, favori" .
+
+viet:人愛	co-so:contains-meaning-aspect	"Affection, amour, favori" .
+
+chu-han:本	rdf:type	co-so:chu-han .
+chu-han:本	co-so:has-meaning-aspect 		"Essentiel, racine, origine, principal, vérité" .
+
+viet:人本	co-so:contains-meaning-aspect	"Essentiel, racine, origine, principal, vérité" .
+
+viet:説人本	co-so:contains-meaning-aspect	"Essentiel, racine, origine, principal, vérité" .
+
+chu-han:説 	rdf:type 	co-so:chu-han .
+chu-han:説 	co-so:has-meaning-aspect 		"Opinion, rumeur, théorie, thèse" .
+
+viet:説人本	co-so:contains-meaning-aspect 	"Opinion, rumeur, théorie, thèse" .
+
+chu-han:工	rdf:type	co-so:chu-han .
+chu-han:工	co-so:has-meaning-aspect 		"Construction, industrie, ingénierie" .
+
+viet:人工	co-so:contains-meaning-aspect 	"Construction, industrie, ingénierie" .
+
+
+
+
+
+
+
+
+chu-nom:𠊚	rdf:type	co-so:chu-nom .
+
+viet:𠊚		rdf:type	co-so:vietnamese-sinogram-combination .
+viet:𠊚伴	rdf:type	co-so:vietnamese-sinogram-combination .
+viet:𠊚法	rdf:type	co-so:vietnamese-sinogram-combination .
+
+viet:𠊚		co-so:contains-sinogram		chu-nom:𠊚 .
+viet:𠊚伴	co-so:contains-sinogram		chu-nom:𠊚 .
+viet:𠊚伴	co-so:contains-sinogram		chu-han:伴 .
+viet:𠊚法	co-so:contains-sinogram		chu-nom:𠊚 .
+viet:𠊚法	co-so:contains-sinogram		chu-han:法 .
+
+viet:người		rdf:type	co-so:vietnamese-word-combination .
+viet:người-bạn	rdf:type	co-so:vietnamese-word-combination .
+viet:người-pháp	rdf:type	co-so:vietnamese-word-combination .
+
+viet:người			co-so:corresponding-vietnamese-sinogram-combination		viet:𠊚 .
+viet:người-bạn		co-so:corresponding-vietnamese-sinogram-combination		viet:𠊚伴 .
+viet:người-pháp		co-so:corresponding-vietnamese-sinogram-combination		viet:𠊚法 .
+
+viet:người			rdfs:label		"người" .
+viet:người-bạn		rdfs:label		"người bạn" .
+viet:người-pháp		rdfs:label		"người pháp" .
+
+viet:𠊚		co-so:has-combination-meaning	"Homme, etre humain, personne" .
+viet:𠊚伴	co-so:has-combination-meaning	"Ami, camarade" .
+viet:𠊚法	co-so:has-combination-meaning	"Francais (personne)" .
+
+chu-nom:𠊚 	co-so:has-meaning-aspect 	"Homme, etre humain, personne" .
+
+viet:𠊚		co-so:contains-meaning-aspect	"Homme, etre humain, personne" .
+viet:𠊚伴	co-so:contains-meaning-aspect	"Homme, etre humain, personne" .
+viet:𠊚法	co-so:contains-meaning-aspect	"Homme, etre humain, personne" .
+
+chu-han:伴	rdf:type	co-so:chu-han .
+chu-han:伴	co-so:has-meaning-aspect  	"Camarade, ami, compagnon, accompagner" .
+
+viet:𠊚伴	co-so:contains-meaning-aspect 	"Camarade, ami, compagnon, accompagner" .
+
+chu-han:法	rdf:type	co-so:chu-han .
+chu-han:法	co-so:has-meaning-aspect  	"(phonetique) France" .
+
+viet:𠊚法	co-so:contains-meaning-aspect 	"(phonetique) France" .
+
+
+
+
+
+
+
+
+chu-han:法	rdf:type	co-so:chu-han .
+
+viet:񣞾法	rdf:type	co-so:vietnamese-sinogram-combination .
+
+viet:񣞾法	co-so:contains-sinogram		chu-han:法 .
+viet:񣞾法	co-so:contains-sinogram		chu-nom:񣞾 .
+
+viet:tiếng-pháp	rdf:type	co-so:vietnamese-word-combination .
+
+viet:tiếng-pháp		co-so:corresponding-vietnamese-sinogram-combination		viet:񣞾法 .
+
+viet:tiếng-pháp			rdfs:label		"tiếng pháp" .
+
+viet:񣞾法	co-so:has-combination-meaning	"Francais (langue)" .
+
+chu-han:法	co-so:has-meaning-aspect	"(phonetique) France" .
+
+viet:񣞾法		co-so:contains-meaning-aspect	"(phonetique) France" .
+
+chu-nom:񣞾	rdf:type	co-so:chu-nom .
+chu-nom:񣞾	co-so:has-meaning-aspect	"Langage, langue, parler" .
+
+viet:񣞾法	co-so:contains-meaning-aspect	"Langage, langue, parler" .
+
+viet:法制	rdf:type	co-so:vietnamese-sinogram-combination .
+
+viet:法制	co-so:contains-sinogram		chu-han:法 .
+viet:法制	co-so:contains-sinogram		chu-han:制 .
+
+viet:pháp-chế	rdf:type	co-so:vietnamese-word-combination .
+
+viet:pháp-chế		co-so:corresponding-vietnamese-sinogram-combination		viet:法制 .
+
+viet:pháp-chế			rdfs:label		"pháp chế" .
+
+viet:法制	co-so:has-combination-meaning	"Loi, regle, legislation" .
+
+chu-han:法	co-so:has-meaning-aspect	"Droit, loi, regle, art, methode, coutume, science" .
+
+viet:法制		co-so:contains-meaning-aspect	"Droit, loi, regle, art, methode, coutume, science" .
+
+chu-han:制	rdf:type	co-so:chu-han .
+chu-han:制	co-so:has-meaning-aspect	"Couper, tailler, retrancher, créer, gouverner" .
+
+viet:法制		co-so:contains-meaning-aspect	"Couper, tailler, retrancher, créer, gouverner" .
+
+viet:法道	rdf:type	co-so:vietnamese-sinogram-combination .
+
+viet:法道	co-so:contains-sinogram		chu-han:法 .
+viet:法道	co-so:contains-sinogram		chu-han:道 .
+
+viet:pháp-đạo	rdf:type	co-so:vietnamese-word-combination .
+
+viet:pháp-đạo		co-so:corresponding-vietnamese-sinogram-combination		viet:法道 .
+
+viet:pháp-đạo			rdfs:label		"pháp đạo" .
+
+viet:法道	co-so:has-combination-meaning	"Boudhisme" .
+
+chu-han:法	co-so:has-meaning-aspect	"relatif au boudhisme, (et par extension) aux magiciens, aux sorciers, etc..." .
+
+viet:法道		co-so:contains-meaning-aspect	"relatif au boudhisme, (et par extension) aux magiciens, aux sorciers, etc..." .
+
+chu-han:道	rdf:type	co-so:chu-han .
+chu-han:道	co-so:has-meaning-aspect	"Chemin, voie, (au Vietnam) religion en general" .
+
+viet:法道		co-so:contains-meaning-aspect	"Chemin, voie, (au Vietnam) religion en general" .
+
+
+
+
+chu-nom:法	rdf:type	co-so:chu-nom .
+
+viet:犯法	rdf:type	co-so:vietnamese-sinogram-combination .
+viet:律法	rdf:type	co-so:vietnamese-sinogram-combination .
+viet:法格物	rdf:type	co-so:vietnamese-sinogram-combination .
+
+viet:犯法	co-so:contains-sinogram	chu-han:犯 .
+viet:犯法	co-so:contains-sinogram	chu-nom:法 .
+viet:律法	co-so:contains-sinogram	chu-nom:法 .
+viet:律法	co-so:contains-sinogram	chu-han:律 .
+viet:法格物	co-so:contains-sinogram	chu-nom:法 .
+viet:法格物	co-so:contains-sinogram	chu-han:格 .
+viet:法格物	co-so:contains-sinogram	chu-han:物 .
+
+viet:phạm-phép		rdf:type	co-so:vietnamese-word-combination .
+viet:luật-phép		rdf:type	co-so:vietnamese-word-combination .
+viet:phép-cách-vật	rdf:type	co-so:vietnamese-word-combination .
+
+viet:phạm-phép		co-so:corresponding-vietnamese-sinogram-combination		viet:犯法 .
+viet:luật-phép		co-so:corresponding-vietnamese-sinogram-combination		viet:律法 .
+viet:phép-cách-vật	co-so:corresponding-vietnamese-sinogram-combination		viet:法格物 .
+
+viet:phạm-phép			rdfs:label		"phạm phép" .
+viet:luật-phép			rdfs:label		"luật phép" .
+viet:phép-cách-vật		rdfs:label		"phép cách vật" .
+
+viet:犯法		co-so:has-combination-meaning	"Violer une loi" .
+viet:律法		co-so:has-combination-meaning	"Loi" .
+viet:法格物		co-so:has-combination-meaning	"Les sciences" .
+
+chu-nom:法 	co-so:has-meaning-aspect 	"Droit, loi, regle, art, methode, coutume, science" .
+
+viet:犯法		co-so:contains-meaning-aspect	"Droit, loi, regle, art, methode, coutume, science" .
+viet:律法		co-so:contains-meaning-aspect	"Droit, loi, regle, art, methode, coutume, science" .
+viet:法格物		co-so:contains-meaning-aspect	"Droit, loi, regle, art, methode, coutume, science" .
+
+chu-han:犯	rdf:type	co-so:chu-han .
+chu-han:犯 	co-so:has-meaning-aspect 	"Attaquer, violer, depasser, offenser, se jeter sur, coupable, criminel" .
+
+viet:犯法	co-so:contains-meaning-aspect	"Attaquer, violer, depasser, offenser, se jeter sur, coupable, criminel" .
+
+chu-han:律	rdf:type	co-so:chu-han .
+chu-han:律 	co-so:has-meaning-aspect 	"Droit, loi, regle, precepte, ordonnance, reglement" .
+
+viet:律法	co-so:contains-meaning-aspect	"Droit, loi, regle, precepte, ordonnance, reglement" .
+
+chu-han:格	rdf:type	co-so:chu-han .
+chu-han:格 	co-so:has-meaning-aspect 	"Atteindre, toucher, parvenir, scruter a fond, penetrer" .
+
+viet:法格物	co-so:contains-meaning-aspect	"Atteindre, toucher, parvenir, scruter a fond, penetrer" .
+
+chu-han:物	rdf:type	co-so:chu-han .
+chu-han:物 	co-so:has-meaning-aspect 	"Substance, matiere, etre, chose, animaux, objet" .
+
+viet:法格物		co-so:contains-meaning-aspect	"Substance, matiere, etre, chose, animaux, objet" .
+
+
+viet:法𨓐		rdf:type	co-so:vietnamese-sinogram-combination .
+viet:法𨓐		co-so:contains-sinogram		chu-nom:法 .
+viet:法𨓐		co-so:contains-sinogram		chu-nom:𨓐 .
+viet:法𨓐		co-so:has-combination-meaning	"Pouvoir extraordinaire, magie, miracle" .
+
+viet:phép-lạ		rdf:type	co-so:vietnamese-word-combination .
+viet:phép-lạ		co-so:corresponding-vietnamese-sinogram-combination		viet:法𨓐 .
+viet:phép-lạ		rdfs:label			"phép lạ" .
+
+chu-nom:法 		co-so:has-meaning-aspect 	"Moyen, pouvoir, puissance" .
+
+viet:法𨓐		co-so:contains-meaning-aspect	"Moyen, pouvoir, puissance" .
+
+chu-nom:𨓐	rdf:type	co-so:chu-nom .
+chu-nom:𨓐 	co-so:has-meaning-aspect 	"Admirable, mirifique, etrange, extraordinaire, mirobolant, rare" .
+
+viet:法𨓐		co-so:contains-meaning-aspect	"Admirable, mirifique, etrange, extraordinaire, mirobolant, rare" .
+
+
+viet:吀法		rdf:type	co-so:vietnamese-sinogram-combination .
+viet:吀法		co-so:contains-sinogram		chu-nom:吀 .
+viet:吀法		co-so:contains-sinogram		chu-nom:法 .
+viet:吀法		co-so:has-combination-meaning	"Demander a faire quelque chose qui pourrait parraitre deplace" .
+
+viet:xin-phép		rdf:type	co-so:vietnamese-word-combination .
+viet:xin-phép		co-so:corresponding-vietnamese-sinogram-combination		viet:吀法 .
+viet:xin-phép		rdfs:label			"xin phép" .
+
+chu-nom:法 		co-so:has-meaning-aspect 	"Autorisation, permission" .
+
+viet:吀法		co-so:contains-meaning-aspect	"Autorisation, permission" .
+
+chu-nom:吀	rdf:type	co-so:chu-nom .
+chu-nom:吀	co-so:has-meaning-aspect 	"Demander, mendier, prier, faire des excuses" .
+
+viet:吀法	co-so:contains-meaning-aspect	"Demander, mendier, prier, faire des excuses" .
+
+
+viet:法𡡇		rdf:type	co-so:vietnamese-sinogram-combination .
+viet:法𡡇		co-so:contains-sinogram		chu-nom:𡡇 .
+viet:法𡡇		co-so:contains-sinogram		chu-nom:法 .
+viet:法𡡇		co-so:has-combination-meaning	"Mariage" .
+
+viet:phép-cưới		rdf:type	co-so:vietnamese-word-combination .
+viet:phép-cưới		co-so:corresponding-vietnamese-sinogram-combination		viet:法𡡇 .
+viet:phép-cưới		rdfs:label			"phép cưới" .
+
+chu-nom:法 		co-so:has-meaning-aspect 	"En langage chretien : rite, sacrement" .
+
+viet:法𡡇		co-so:contains-meaning-aspect	"En langage chretien : rite, sacrement" .
+
+chu-nom:𡡇		rdf:type	co-so:chu-nom .
+chu-nom:𡡇 		co-so:has-meaning-aspect 	"Se marier, prendre femme, epouser" .
+
+viet:法𡡇		co-so:contains-meaning-aspect	"Se marier, prendre femme, epouser" .
+
+
+viet:方法		rdf:type	co-so:vietnamese-sinogram-combination .
+viet:方法		co-so:contains-sinogram		chu-han:方 .
+viet:方法		co-so:contains-sinogram		chu-han:法 .
+viet:方法		co-so:has-combination-meaning	"Methode, moyen, mesure" .
+
+viet:phương-pháp		rdf:type	co-so:vietnamese-word-combination .
+viet:phương-pháp		co-so:corresponding-vietnamese-sinogram-combination		viet:方法 .
+viet:phương-pháp		rdfs:label			"phương pháp" .
+
+viet:方法		co-so:contains-meaning-aspect	"Droit, loi, regle, art, methode, coutume, science" .
+
+chu-han:方	rdf:type	co-so:chu-han .
+chu-han:方 	co-so:has-meaning-aspect 	"Loi, methode, moyen, expediant" .
+
+viet:方法		co-so:contains-meaning-aspect	"Loi, methode, moyen, expediant" .
+
+chu-han:方 		rdfs:seeAlso	chu-han:法 .
+
+chu-han:律 		rdfs:seeAlso	chu-nom:法 .

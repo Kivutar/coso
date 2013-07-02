@@ -1,0 +1,150 @@
+<ul class="breadcrumb">
+	[% FOREACH item IN breadcrumb %]
+		<li><a href="/desc/[% item.uri %]">[% item.label %]</a> <span class="divider">&gt;</span></li>
+	[% END %]
+	<li><a href="/desc/[% type %]">[% type_label %]</a> <span class="divider">&gt;</span></li>
+	<li class="active">[% title %]</li>
+</ul>
+
+<h1>[% title %]</h1>
+
+[% details %]
+
+<hr/>
+
+<h2>Graph</h2>
+
+<script>
+	function init() {
+		var sigInst = sigma.init(document.getElementById('sigma')).drawingProperties({
+			defaultLabelColor: '#000',
+			defaultLabelSize: 24,
+			defaultLabelBGColor: '#fff',
+			defaultLabelHoverColor: '#000',
+			defaultEdgeType: 'curve',
+			labelThreshold: 30,
+		}).graphProperties({
+			minNodeSize: 5,
+			maxNodeSize: 20,
+			minEdgeSize: 5,
+			maxEdgeSize: 5
+		}).mouseProperties({
+			mouseEnabled: false
+		});
+
+		sigInst.addNode('[% uri %]', {
+			x: Math.random(),
+			y: Math.random(),
+			label: '[% title | replace( "'", "\\'" ) %]',
+			color: '[% color %]',
+			size: 20
+		});
+
+		[% FOREACH statement IN statements %]
+			try {
+				sigInst.addNode('[% statement.subject | replace( "'", "\\'" ) %]', {
+					x: Math.random(),
+					y: Math.random(),
+					label: '[% statement.subject_label | replace( "'", "\\'" ) %]',
+					color: '[% statement.subject_color %]',
+					size: 10
+				});
+			}  catch(err) {}
+			try {
+				sigInst.addNode('[% statement.object | replace( "'", "\\'" ) %]', {
+					x: Math.random(),
+					y: Math.random(),
+					label: '[% statement.object_label | replace( "'", "\\'" ) %]',
+					color: '[% statement.object_color %]',
+					size: 10
+				});
+			}  catch(err) {}
+			try {
+				sigInst.addEdge('[% statement.subject | replace( "'", "\\'" ) %][% statement.predicate | replace( "'", "\\'" ) %][% statement.object | replace( "'", "\\'" ) %]','[% statement.subject | replace( "'", "\\'" ) %]','[% statement.object | replace( "'", "\\'" ) %]');
+			}  catch(err) {}
+		[% END %]
+
+		// extended
+		[% FOREACH statement IN extendedstatements %]
+			try {
+				sigInst.addNode('[% statement.subject | replace( "'", "\\'" ) %]', {
+					x: Math.random(),
+					y: Math.random(),
+					label: '[% statement.subject_label %]',
+					color: '[% statement.subject_color %]',
+					size: 5
+				});
+			}  catch(err) {}
+			try {
+				sigInst.addNode('[% statement.object | replace( "'", "\\'" ) %]', {
+					x: Math.random(),
+					y: Math.random(),
+					label: '[% statement.object_label | replace( "'", "\\'" ) %]',
+					color: '[% statement.object_color %]',
+					size: 5
+				});
+			}  catch(err) {}
+			try {
+				sigInst.addEdge('[% statement.subject | replace( "'", "\\'" ) %][% statement.predicate | replace( "'", "\\'" ) %][% statement.object | replace( "'", "\\'" ) %]','[% statement.subject | replace( "'", "\\'" ) %]','[% statement.object | replace( "'", "\\'" ) %]');
+			}  catch(err) {}
+		[% END %]
+
+		// very extended
+		[% FOREACH statement IN veryextendedstatements %]
+			try {
+				sigInst.addNode('[% statement.subject | replace( "'", "\\'" ) %]', {
+					x: Math.random(),
+					y: Math.random(),
+					label: '[% statement.subject_label | replace( "'", "\\'" ) %]',
+					color: '[% statement.subject_label %]',
+					size: 1
+				});
+			}  catch(err) {}
+			try {
+				sigInst.addNode('[% statement.object | replace( "'", "\\'" ) %]', {
+					x: Math.random(),
+					y: Math.random(),
+					label: '[% statement.object_label | replace( "'", "\\'" ) %]',
+					color: '[% statement.object_color %]',
+					size: 1
+				});
+			}  catch(err) {}
+			try {
+				sigInst.addEdge('[% statement.subject | replace( "'", "\\'" ) %][% statement.predicate | replace( "'", "\\'" ) %][% statement.object | replace( "'", "\\'" ) %]','[% statement.subject | replace( "'", "\\'" ) %]','[% statement.object | replace( "'", "\\'" ) %]');
+			}  catch(err) {}
+		[% END %]
+
+		sigInst.startFruchtermanReingold();
+	}
+	 
+	if (document.addEventListener) {
+		document.addEventListener("DOMContentLoaded", init, false);
+	} else {
+		window.onload = init;
+	}
+</script>
+
+<div id="sigma"></div>
+
+<hr/>
+
+<h2>Statements</h2>
+
+<table class="table table-striped table-bordered">
+	<tr>
+		<th>Subject</th>
+		<th>Predicate</th>
+		<th>Object</th>
+	</tr>
+	[% FOREACH statement IN statements %]
+		<tr>
+			<td><a href="/desc/[% statement.subject %]">[% statement.subject_label %]</a></td>
+			<td><a href="/desc/[% statement.predicate %]">[% statement.predicate_label %]</a></td>
+			[% IF statement.is_literal %]
+				<td>[% statement.object_label %]</td>
+			[% ELSE %]
+				<td><a href="/desc/[% statement.object %]">[% statement.object_label %]</a></td>
+			[% END %]
+		</tr>
+	[% END %]
+</table>

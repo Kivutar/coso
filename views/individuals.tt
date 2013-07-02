@@ -1,0 +1,36 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span4">
+			[% VIEW nested_list %]
+				[% BLOCK list %]
+					<ul class="branch in">
+						[% FOREACH i IN item %]
+							<li>
+								<a href="[% i.subject %]" role="[% IF i.children %]branch[% ELSE %]leaf[% END %]">[% i.label %]</a>
+								[% IF i.children %]
+									[% nested_list.print(i.children.list) %]
+								[% END %]
+							</li>
+						[% END %]
+					</ul>
+				[% END %]
+			[% END %]
+			<ul>
+				<li>
+					<a href="#">Thing</a>
+					[% nested_list.print(classes) %]
+				</li>
+			</ul>
+		</div>
+		<div class="span8">
+			<ul>
+				[% FOREACH result IN results %]
+					<li>
+						<a href="/desc/[% result.subject | uri %]">[% result.label %]</a>
+						( <a href="/desc/[% result.type %]">[% result.typelabel %]</a> )
+					</li>
+				[% END %]
+			</ul>
+		</div>
+	</div>
+</div>

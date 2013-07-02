@@ -1,0 +1,34 @@
+<ul class="breadcrumb">
+	<li><a href="/desc/ontology">Ontology</a> <span class="divider">&gt;</span></li>
+	<li class="active">Classes</li>
+</ul>
+
+<h1>Classes</h1>
+
+<hr/>
+
+<h2>Hierarchy</h2>
+
+[% VIEW nested_list %]
+	[% BLOCK list %]
+		<ul>
+			[% FOREACH i IN item %]
+				<li>
+					<a href="/desc/[% i.subject %]">[% i.label %]<br/>[% i.instances %]</a>
+					[% IF i.children %]
+						[% nested_list.print(i.children.list) %]
+					[% END %]
+				</li>
+			[% END %]
+		</ul>
+	[% END %]
+[% END %]
+
+<div class="familly-tree">
+	<ul>
+		<li>
+			<a href="#">Thing</a>
+			[% nested_list.print(classes) %]
+		</li>
+	</ul>
+</div>

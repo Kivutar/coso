@@ -1,0 +1,11 @@
+<hr/>
+
+<h2>Composition</h2>
+
+<br/>
+
+<ol>
+[% FOREACH sinogram IN sinograms %]
+	<li><a href="/desc/[% sinogram.subject %]">[% sinogram.subject_label %]</a> [% sinogram.aspect %]</li>
+[% END %]
+</ol>

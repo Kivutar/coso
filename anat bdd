@@ -1,0 +1,237 @@
+@prefix								rdf:				<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix								rdfs:				<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix								owl:				<http://www.w3.org/2002/07/owl#> .
+@prefix								anat:				<http://anat.org/> .
+
+
+anat:bone					rdf:type			owl:Class .
+anat:bone					rdfs:label			"Os" .
+
+anat:joint					rdf:type			owl:Class .
+anat:joint					rdfs:label			"Articulation" .
+
+anat:bone-structure				rdf:type			owl:Class .
+anat:bone-structure				rdfs:label			"Structure osseuse" .
+
+anat:contains-bone-structure			rdf:type			owl:ObjectProperty .
+anat:contains-bone-structure			rdfs:range			anat:bone-structure .
+anat:contains-bone-structure			rdfs:domain			anat:bone .
+anat:contains-bone-structure			rdfs:domain			anat:bone-structure .
+anat:contains-bone-structure			rdfs:label			"contient une structure osseuse" .
+
+anat:articular-surface				rdf:type			owl:Class .
+anat:articular-surface				rdfs:label			"Surface articulaire" .
+
+anat:contains-articular-surface			rdfs:type			owl:Class
+anat:contains-articular-surface			rdfs:range			anat:articular-surface
+anat:contains-articular-surface			rdfs:domain			anat:bone .
+anat:contains-articular-surface			rdfs:domain			anat:bone-structure .
+anat:contains-articular-surface			rdfs:domain			anat:joint .
+anat:contains-articular-surface			rdfs:label			"contient une surface articulaire"
+
+anat:is-in-contact-with				rdf:type			owl:ObjectProperty .
+anat:is-in-contact-with				rdfs:range			anat:articular-surface .
+anat:is-in-contact-with				rdfs:range			anat:menisque
+anat:is-in-contact-with				rdfs:domain			anat:articular-surface .
+anat:is-in-contact-with				rdfs:label			"est en contact avec" .
+
+anat:joint					rdf:type			owl:Class .
+anat:joint					rdfs:label			"Articulation" .
+
+anat:short-bone					rdfs:subClassOf			anat:bone .
+anat:short-bone					rdfs:label			"Os court" .
+anat:axial-short-bone				rdfs:subClassOf			anat:short-bone .
+anat:axial-short-bone				rdfs:label			"Vertebre" .
+anat:lumbar-vertebra				rdfs:subClassOf			anat:axial-short-bone .
+anat:lumbar-vertebra				rdfs:label			"Vertebre lombaire" .
+anat:thoracic-vertebra				rdfs:subClassOf			anat:axial-short-bone .
+anat:thoracic-vertebra				rdfs:label			"Vertebre thoracique" .
+anat:cervical-vertebra				rdfs:subClassOf			anat:axial-short-bone .
+anat:cervical-vertebra				rdfs:label			"Vertebre cervicale" .
+anat:sacral-vertebra				rdfs:subClassOf			anat:axial-short-bone .
+anat:sacral-vertebra				rdfs:label			"Vertebres sacrees" .
+anat:sacral-vertebras				rdfs:subClassOf			anat:axial-short-bone .
+anat:sacral-vertebras				rdfs:label			"Vertebres sacrees" .
+anat:coccyx-vertebras				rdfs:subClassOf			anat:axial-short-bone .
+anat:coccyx-vertebras				rdfs:label			"Vertebres coccygiennes" .
+
+anat:up-limb-short-bone				rdfs:subClassOf			anat:short-bone .
+anat:up-limb-short-bone				rdfs:label			"Os court du membre superieur" .
+anat:low-limb-short-bone			rdfs:subClassOf			anat:short-bone .
+anat:low-limb-short-bone			rdfs:label			"Os court du membre inferieur" .
+anat:carpal-bone				rdfs:subClassOf			anat:up-limb-short-bone .
+anat:carpal-bone				rdfs:label			"Os du carpe .
+anat:1st-carpal-row				rdfs:subClassOf			anat:carpal-bone .
+anat:1st-carpal-row				rdfs:label			"1ere rangee du carpe" .
+anat:2nd-carpal-row				rdfs:subClassOf			anat:carpal-bone .
+anat:2nd-carpal-row				rdfs:label			"2e rangee du carpe" .
+anat:tarsal-bone				rdfs:subClassOf			anat:low-limb-short-bone .
+anat:tarsal-bone				rdfs:label			"Os du tarse .
+anat:back-tarsal-bone				rdfs:subClassOf			anat:tarsal-bone .
+anat:back-tarsal-bone				rdfs:label			"os du tarse posterieur" .
+anat:front-tarsal-bone				rdfs:subClassOf			anat:tarsal-bone .
+anat:front-tarsal-bone				rdfs:label			"os du tarse anterieur" .
+
+anat:long-bone					rdfs:subClassOf			anat:bone .
+anat:long-bone					rdfs:label			"Os long" .
+anat:axial-long-bone				rdfs:subClassOf			anat:long-bone .
+anat:axial-long-bone				rdfslabel			"Os long axial" .
+anat:appendicular-long-bone			rdfs:subClassOf			anat:long-bone .
+anat:appendicular-long-bone			rdfs:label			"Os long du systeme appendiculaire" .
+
+anat:flat-bone					rdfs:subClassOf			anat:bone .
+anat:flat-bone					rdfs:label			"Os plat" .
+anat:axial-flat-bone				rdfs:subClassOf			anat:flat-bone .
+anat:axial-flat-bone				rdfs:label			"Os plat de l'axe central" .
+anat:cranial-bone				rdfs:subClassOf			anat:axial-flat-bone .
+anat:cranial-bone				rdfs:label			"Os de la voute, de la calvaria" .
+anat:facial-bone				rdfs:subClassOf			anat:axial-flat-bone .
+anat:facial-bone				rdfs:label			"Os de la face" .
+anat:up-limb-flat-bone				rdfs:subClassOf			anat:flat-bone .
+anat:up-limb-flat-bone				rdfs:label			"Os plat du membre superieur" .
+anat:low-limb-flat-bone				rdfs:subClassOf			anat:flat-bone .
+anat:low-limb-flat-bone				rdfs:label			"Os plat du membre inferieur" .
+
+anat:mini-bone					rdfs:subClassOf			anat:bone .
+anat:mini-bone					rdfs:label			"Os miniature" .
+
+anat:sesamoid-bone				rdfs:subClassOf			anat:bone .
+anat:sesamoid-bone				rdfs:label			"Os sesamoide" .
+
+
+anat:ligament					rdf:type			owl:Class .
+anat:ligament					rdfs:label			"Ligament" .
+
+anat:is-attached-to				rdf:type			owl:ObjectProperty .
+anat:is-attached-to				rdfs:range			anat:bone .
+anat:is-attached-to				rdfs:range			anat:fascia .
+anat:is-attached-to				rdfs:domain			anat:ligament .
+anat:is-attached-to				rdfs:domain			anat:muscle .
+anat:is-attached-to				rdfs:domain			anat:fascia .
+anat:is-attached-to				rdfs:label			"s'insere sur" .
+
+anat:fascia					rdf:type			owl:Class .
+anat:fascia					rdfs:label			"Fascia" .
+
+anat:muscle					rdf:type			owl:Class .
+anat:muscle					rdfs:label			"Muscle" .
+
+
+
+
+
+
+
+
+
+
+anat:femur		rdf:type			anat:low-limb-long-bone .
+anat:femur		rdfs:label			"Femur" .
+
+anat:femur		anat:contains-bone-structure	anat:epiphyse-fem-sup .
+anat:epiphyse-fem-sup	rdfs:label			"Epiphyse femorale superieure" .
+anat:epiphyse-fem-sup	anat:contains-bone-structure	anat:tete-femur .
+anat:tete-femur		rdfs:label			"Tete du femur" .
+anat:epiphyse-fem-sup	anat:contains-bone-structure	anat:col-femur .
+anat:col-femur		rdfs:label			"Col du femur" .
+anat:epiphyse-fem-sup	anat:contains-bone-structure	anat:gd-troc .
+anat:gd-troc		rdfs:label			"Grand trochanter" .
+anat:epiphyse-fem-sup	anat:contains-bone-structure	anat:pt-troc .
+anat:pt-troc		rdfs:label			"Petit trochanter" .
+
+anat:femur		anat:contains-bone-structure	anat:diaphyse-fem .
+anat:diaphyse-fem	rdfs:label			"Diaphyse femorale" .
+
+anat:femur		anat:contains-bone-structure	anat:epiphyse-fem-inf .
+anat:epiphyse-fem-inf	rdfs:label			"Epiphyse femorale inferieure" .
+
+anat:tete-femur		anat:contains-articular-surface	anat:surf-arti-fem-iliaq .
+anat:surf-arti-fem-iliaq	rdfs:label		"Surface articulaire femoro-iliaque" .
+anat:epiphyse-fem-inf	anat:contains-articular-surface	anat:surf-arti-fem-tib .
+anat:surf-arti-fem-tib		rdfs:label		"Surface articulaire femoro-tibiale" .
+anat:epiphyse-fem-inf	anat:contains-articular-surface	anat:surf-arti-fem-pat .
+anat:surf-arti-fem-pat		rdfs:label		"Surface articulaire femoro-patellaire" .
+
+
+anat:patella		rdf:type			anat:low-limb-short-bone .
+anat:patella		rdfs:label			"Patella" .
+anat:patella		rdfs:contains-articular-surface	anat:surf-arti-pat-fem .
+anat:surf-arti-pat-fem	rdfs:label			"Surface articulaire femorale" .
+
+
+anat:tibia		rdf:type			anat:low-limb-long-bone .
+anat:tibia		rdfs:label			"Tibia" .
+
+anat:tibia		rdfs:contains-bone-structure	anat:epiphyse-tib-sup .
+anat:epiphyse-tib-sup	rdfs:label			"Epiphyse tibiale superieure" .
+anat:epiphyse-tib-sup	rdfs:contains-bone-structure	anat:tubercule-tib-ant .
+anat:tubercule-tib-ant	rdfs:label			"Tubercule tibial anterieur" .
+
+anat:tibia		anat:contains-bone-structure	anat:diaphyse-tib .
+anat:diaphyse-tib	rdfs:label			"Diaphyse tibiale" .
+
+anat:tibia		rdfs:contains-bone-structure	anat:epiphyse-tib-inf .
+anat:epiphyse-tib-inf	rdfs:label			"Epiphyse tibiale inferieure" .
+anat:epiphyse-tib-inf	rdfs:contains-bone-structure	anat:malleole-tib .
+anat:malleole-tib	rdfs:label			"Malleole tibiale" .
+
+anat:epiphyse-tib-sup	rdfs:contains-articular-surface	anat:surf-arti-tib-fem .
+anat:surf-arti-tib-fem	rdfs:label			"Surface articulaire tibio-femorale" .
+anat:epiphyse-tib-sup	rdfs:contains-articular-surface	anat:surf-arti-tib-fib-sup .
+anat:surf-arti-tib-fib-sup	rdfs:label		"Surface articulaire fibulaire superieure" .
+
+anat:epiphyse-tib-inf	rdfs:contains-articular-surface	anat:surf-arti-tib-fib-inf .
+anat:surf-arti-tib-fib-inf	rdfs:label		"Surface articulaire fibulaire inferieure" .
+anat:epiphyse-tib-inf	rdfs:contains-articular-surface	anat:surf-arti-tib-tal-sup .
+anat:surf-arti-tib-tal-sup	rdfs:label		"Surface articulaire tibio-talaire superieure" .
+anat:malleole-tib	rdfs:contains-articular-surface	anat:surf-arti-tib-tal-med .
+anat:surf-arti-tib-tal-med	rdfs:label		"Surface articulaire tibio-talaire mediale" .
+
+
+anat:fibula		rdf:type			anat:low-limb-long-bone .
+anat:fibula		rdfs:label			"Fibula" .
+
+anat:fibula		rdfs:contains-bone-structure	anat:epiphyse-fib-sup .
+anat:epiphyse-fib-sup	rdfs:label			"Tete fibulaire" .
+anat:fibula		anat:contains-bone-structure	anat:diaphyse-fib .
+anat:diaphyse-fib	rdfs:label			"Diaphyse fibulaire" .
+anat:fibula		rdfs:contains-bone-structure	anat:epiphyse-fib-inf .
+anat:epiphyse-fib-inf	rdfs:label			"Malleole fibulaire" .
+
+anat:epiphyse-fib-sup	rdfs:contains-articular-surface	anat:surf-arti-fib-tib-sup .
+anat:surf-arti-fib-tib-sup	rdfs:label		"Surface articulaire tibiale superieure" .	
+anat:epiphyse-fib-inf	rdfs:contains-articular-surface	anat:surf-arti-fib-tib-inf .
+anat:surf-arti-fib-tib-inf	rdfs:label		"Surface articulaire tibiale inferieure" .	
+anat:epiphyse-fib-inf	rdfs:contains-articular-surface	anat:surf-arti-fib-tal .
+anat:surf-arti-fib-tal	rdfs:label			"Surface articulaire talaire" .
+
+
+anat:talus		rdf:type			anat:low-limb-short-bone .
+anat:talus		rdfs:label			"Talus" .
+
+anat:talus		rdfs:contains-articular-surface	anat:surf-arti-tal-tib-sup .
+anat:surf-arti-tal-tib-sup	rdfs:label		"Surface articulaire tibiale superieure" .
+anat:talus		rdfs:contains-articular-surface	anat:surf-arti-tal-tib-med .
+anat:surf-arti-tal-tib-med	rdfs:label		"Surface articulaire tibiale mediale".
+anat:talus		rdfs:contains-articular-surface	anat:surf-arti-tal-fib .
+anat:surf-arti-tal-fib	rdfs:contains-articular-surface	"Surface articulaire fibulaire" .
+anat:talus		rdfs:contains-articular-surface	anat:surf-arti-tal-cal-post .
+anat:surf-arti-tal-cal-post	rdfs:label		"Surface articulaire calcaneenne posterieure" .
+anat:talus		rdfs:contains-articular-surface	anat:surf-arti-tal-cal-ant .
+anat:surf-arti-tal-cal-ant	rdfs:label		"Surface articulaire calcaneenne anterieure" .
+anat:talus		rdfs:contains-articular-surface	anat:surf-arti-tal-nav .
+anat:surf-arti-tal-nav	rdfs:label			"Surface articulaire naviculaire" .
+
+
+
+
+anat:surf-arti-fem-tib		anat:is-in-contact-with		anat:surf-arti-tib-fem .
+anat:surf-arti-fem-pat		anat:is-in-contact-with		anat:surf-arti-pat-fem .
+
+anat:surf-arti-tib-fib-sup	anat:is-in-contact-with		anat:surf-arti-fib-tib-sup .
+anat:surf-arti-tib-fib-inf	anat:is-in-contact-with		anat:surf-arti-fib-tib-inf .
+anat:surf-arti-tib-tal-sup	anat:is-in-contact-with		anat:surf-arti-tal-tib-sup .
+anat:surf-arti-tib-tal-med	anat:is-in-contact-with		anat:surf-arti-tal-tib-med .
+
+anat:surf-arti-fib-tal		anat:is-in-contact-with		anat:surf-arti-tal-fib .
+
